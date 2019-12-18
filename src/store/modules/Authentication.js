@@ -41,7 +41,6 @@ const actions = {
       router.push("/");
     } else {
       commit('setError', isSignin.error)
-      // commit('clearError')
     }
   },
   clearError({ commit }) {
