@@ -43,7 +43,17 @@ export default {
     return Repository.post(`${resource}/reset-password`, payload)
       .then(response => {
         return response.data
-      }).catch(error => {
+      })
+      .catch(error => {
+        return error.response.data;
+      })
+  },
+  updatePassword(payload, option) {
+    return Repository.put(`${resource}/update-password`, payload, option)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
         return error.response.data;
       })
   }

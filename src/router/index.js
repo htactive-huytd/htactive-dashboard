@@ -8,6 +8,8 @@ import Signup from '../views/authentication/Signup.vue'
 import SignupConfirm from '../views/authentication/SignupConfirm.vue'
 import ForgotPassword from '../views/authentication/ForgotPassword.vue'
 import ResetPassword from '../views/authentication/ResetPassword.vue'
+import UpdatePassword from '../views/authentication/UpdatePassword.vue'
+
 
 
 Vue.use(VueRouter)
@@ -42,6 +44,11 @@ const routes = [
     path: '/ResetPassword',
     name: 'ResetPassword',
     component: ResetPassword
+  },
+  {
+    path: '/UpdatePassword',
+    name: 'UpdatePassword',
+    component: UpdatePassword
   },
 
 ]

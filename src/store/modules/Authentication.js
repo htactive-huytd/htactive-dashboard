@@ -94,6 +94,18 @@ const actions = {
     } else {
       commit('setError', isResetPassword.error)
     }
+  },
+  async updatePassword({ commit }, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    const isUpdatePassword = await AuthenticationRepository.updatePassword(payload, localStore.headerBearerToken());
+    commit('setLoading', false)
+    if (isUpdatePassword.status === true) {
+      commit('clearError')
+      router.push('/signin')
+    } else {
+      commit('setError', isUpdatePassword.error)
+    }
   }
 }
 
