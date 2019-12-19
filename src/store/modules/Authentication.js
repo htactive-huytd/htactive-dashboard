@@ -78,11 +78,23 @@ const actions = {
     commit('setLoading', false)
     if (isForgotPassword.status === true) {
       commit('clearError')
-      router.push("/");
+      router.push("/ResetPassword");
     } else {
       commit('setError', isForgotPassword.error)
     }
   },
+  async resetPassword({ commit }, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    const isResetPassword = await AuthenticationRepository.resetPassword(payload);
+    commit('setLoading', false)
+    if (isResetPassword.status === true) {
+      commit('clearError')
+      router.push('/signin')
+    } else {
+      commit('setError', isResetPassword.error)
+    }
+  }
 }
 
 export default {

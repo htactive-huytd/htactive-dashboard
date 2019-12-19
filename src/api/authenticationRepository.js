@@ -39,4 +39,12 @@ export default {
         return error.response.data;
       });
   },
+  resetPassword(payload) {
+    return Repository.post(`${resource}/reset-password`, payload)
+      .then(response => {
+        return response.data
+      }).catch(error => {
+        return error.response.data;
+      })
+  }
 }
