@@ -1,0 +1,144 @@
+{
+  "dataMenuDashBoard": [
+    {
+      "text": "Quản lý quyền",
+      "icon": "mdi-account",
+      "childs": [
+        {
+          "text": "Admin",
+          "link": ""
+        },
+        {
+          "text": "Employee",
+          "link": ""
+        },
+        {
+          "text": "InterShip",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Quản lý nhân viên",
+      "icon": "mdi-account-card-details-outline",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": "/dashboard/useractive"
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": "/dashboard/userblock"
+        }
+      ]
+    },
+    {
+      "text": "Quản lý ngày vắng",
+      "icon": "mdi-account-multiple-minus-outline",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Thống kê ngày vắng",
+      "icon": "mdi-chart-line",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Quản lý lương nhân viên",
+      "icon": "mdi-account-cash-outline",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Quản lý thực tập sinh",
+      "icon": "mdi-face-profile",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Quản lý sơ yếu lý lịch",
+      "icon": "mdi-file-document-box-search-outline",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "text": "Quản lý tiền thu chi",
+      "icon": "mdi-chart-line-stacked",
+      "childs": [
+        {
+          "text": "Tài khoản đang hoạt động",
+          "link": ""
+        },
+        {
+          "text": "Tài khoản đang bị khóa",
+          "link": ""
+        },
+        {
+          "text": "Quản lý quyền tài khoản",
+          "link": ""
+        }
+      ]
+    }
+  ]
+}

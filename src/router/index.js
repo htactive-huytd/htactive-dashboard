@@ -10,6 +10,9 @@ import ForgotPassword from '../views/authentication/ForgotPassword.vue'
 import ResetPassword from '../views/authentication/ResetPassword.vue'
 import UpdatePassword from '../views/authentication/UpdatePassword.vue'
 
+//dashboard
+import DashBoard from '../views/dashboard/DashBoard.vue'
+
 
 
 Vue.use(VueRouter)
@@ -50,6 +53,23 @@ const routes = [
     name: 'UpdatePassword',
     component: UpdatePassword
   },
+  {
+    path: '/DashBoard',
+    name: 'DashBoard',
+    component: DashBoard,
+    // children: [
+    //   { path: 'useractive', component: UserActive },
+    //   {
+    //     path: 'userblock', component: UserBlock
+    //   }
+    //   // {
+    //   //   path: 'profile', components: {
+    //   //     default: Profile,
+    //   //     help: UserEdit
+    //   //   }
+    //   // }
+    // ]
+  }
 
 ]
 
