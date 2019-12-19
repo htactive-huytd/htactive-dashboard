@@ -30,6 +30,9 @@ const mutations = {
 };
 
 const actions = {
+  clearError({ commit }) {
+    commit('clearError')
+  },
   async signin({ commit }, payload) {
     commit('setLoading', true)
     commit('clearError')
@@ -43,9 +46,6 @@ const actions = {
       commit('setError', isSignin.error)
     }
   },
-  clearError({ commit }) {
-    commit('clearError')
-  },
   async signup({ commit }, payload) {
     commit('setLoading', true)
     commit('clearError')
@@ -54,11 +54,23 @@ const actions = {
     console.log('isSignup', isSignup);
     if (isSignup.status === true) {
       commit('clearError')
-      router.push("/");
+      router.push("/SignupConfirm");
     } else {
       commit('setError', isSignup.error)
     }
-  }
+  },
+  async signinConfirm({ commit }, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    const isSigninConfirm = await AuthenticationRepository.signinConfirm(payload);
+    commit('setLoading', false)
+    if (isSigninConfirm.status === true) {
+      commit('clearError')
+      router.push("/");
+    } else {
+      commit('setError', isSigninConfirm.error)
+    }
+  },
 }
 
 export default {

@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 //import authentication
 import Signin from '../views/authentication/Signin.vue'
 import Signup from '../views/authentication/Signup.vue'
+import SignupConfirm from '../views/authentication/SignupConfirm.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/signup',
     name: 'Signup',
     component: Signup
+  },
+  {
+    path: '/SignupConfirm',
+    name: 'SignupConfirm',
+    component: SignupConfirm
   },
 
 ]

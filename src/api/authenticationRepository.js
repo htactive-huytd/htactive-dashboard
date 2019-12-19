@@ -20,5 +20,14 @@ export default {
       .catch(error => {
         return error.response.data;
       });
+  },
+  signinConfirm(payload) {
+    return Repository.post(`${resource}/signUp-confirm`, payload)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        return error.response.data;
+      });
   }
 }
