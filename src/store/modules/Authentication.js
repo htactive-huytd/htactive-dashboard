@@ -45,6 +45,19 @@ const actions = {
   },
   clearError({ commit }) {
     commit('clearError')
+  },
+  async signup({ commit }, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    const isSignup = await AuthenticationRepository.signup(payload);
+    commit('setLoading', false)
+    console.log('isSignup', isSignup);
+    if (isSignup.status === true) {
+      commit('clearError')
+      router.push("/");
+    } else {
+      commit('setError', isSignup.error)
+    }
   }
 }
 

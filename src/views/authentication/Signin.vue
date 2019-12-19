@@ -45,7 +45,6 @@
                 </v-row>
                 <v-row>
                   <v-col class="d-flex justify-end">
-                    <!-- <v-spacer></v-spacer> -->
                     <v-btn
                       type="submit"
                       large
@@ -56,19 +55,20 @@
                       Sign in
                       <template v-slot:loader>
                         <span class="custom-loader">
-                          <v-icon>mdi-cached</v-icon>
+                          <v-icon color="white">mdi-cached</v-icon>
                         </span>
                       </template>
                     </v-btn>
                   </v-col>
                 </v-row>
                 <v-row class="d-flex justify-space-around align-center">
-                  <!-- <v-col cols="6" > -->
-                    <v-btn color="primary" class="text-capitalize" text to="/forgotpassword">Forgot Password?</v-btn>
-                  <!-- </v-col> -->
-                  <!-- <v-col cols="6"> -->
-                    <v-btn color="primary" class="text-capitalize" text to="/signup">Create Account?</v-btn>
-                  <!-- </v-col> -->
+                  <v-btn
+                    color="primary"
+                    class="text-capitalize"
+                    text
+                    to="/forgotpassword"
+                  >Forgot Password?</v-btn>
+                  <v-btn color="primary" class="text-capitalize" text to="/signup">Create Account?</v-btn>
                 </v-row>
               </v-form>
             </v-container>

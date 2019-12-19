@@ -14,7 +14,7 @@
           </v-toolbar>
           <v-card-text>
             <v-container>
-              <v-form v-model="valid" @submit.prevent="onSignin">
+              <v-form v-model="valid" @submit.prevent="onSignup">
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
@@ -60,8 +60,8 @@
                       name="password"
                       prepend-icon="mdi-lock"
                       type="password"
-                      v-model="password"
-                      :rules="rules.passwordRules"
+                      v-model="rePassword"
+                      :rules="passwordConfirmationRule"
                       required
                     />
                   </v-col>
@@ -157,6 +157,12 @@ export default {
       valid: true,
       email: "",
       password: "",
+      rePassword: "",
+      username: "",
+      full_name: "",
+      sex_type: true,
+      address: "",
+      phoneNumber: "",
       rules: {
         emailRules: [
           v => !!v || "E-mail is required",
@@ -171,14 +177,24 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("auth", ["loading", "error"])
+    ...mapGetters("auth", ["loading", "error"]),
+    passwordConfirmationRule() {
+      return [this.rePassword === this.password || "Password must match"];
+    }
   },
-  watch: {},
   methods: {
-    ...mapActions("auth", ["signin", "clearError"]), //modules vuex: auth,  actions: signin
-    onSignin() {
-      const payload = { email: this.email, password: this.password };
-      this.signin(payload); //call actions signin at vuex-authentication
+    ...mapActions("auth", ["signup", "clearError"]),
+    onSignup() {
+      const payload = {
+        email: this.email,
+        password: this.password,
+        username: this.username,
+        full_name: this.full_name,
+        sex_type: this.sex_type,
+        address: this.address,
+        phoneNumber: this.phoneNumber
+      };
+      this.signup(payload);
     },
     onDismissed() {
       this.clearError();

@@ -11,5 +11,14 @@ export default {
       .catch(error => {
         return error.response.data;
       });
+  },
+  signup(payload) {
+    return Repository.post(`${resource}/signUp`, payload)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        return error.response.data;
+      });
   }
 }
