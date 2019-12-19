@@ -6,6 +6,8 @@ import Home from '../views/Home.vue'
 import Signin from '../views/authentication/Signin.vue'
 import Signup from '../views/authentication/Signup.vue'
 import SignupConfirm from '../views/authentication/SignupConfirm.vue'
+import ForgotPassword from '../views/authentication/ForgotPassword.vue'
+
 
 Vue.use(VueRouter)
 
@@ -29,6 +31,11 @@ const routes = [
     path: '/SignupConfirm',
     name: 'SignupConfirm',
     component: SignupConfirm
+  },
+  {
+    path: '/ForgotPassword',
+    name: 'ForgotPassword',
+    component: ForgotPassword
   },
 
 ]

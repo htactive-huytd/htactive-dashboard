@@ -29,5 +29,14 @@ export default {
       .catch(error => {
         return error.response.data;
       });
-  }
+  },
+  forgotPassword(payload) {
+    return Repository.post(`${resource}/forgot-password`, payload)
+      .then(response => {
+        return response.data
+      })
+      .catch(error => {
+        return error.response.data;
+      });
+  },
 }

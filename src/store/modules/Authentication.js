@@ -71,6 +71,18 @@ const actions = {
       commit('setError', isSigninConfirm.error)
     }
   },
+  async forgotPassword({ commit }, payload) {
+    commit('setLoading', true)
+    commit('clearError')
+    const isForgotPassword = await AuthenticationRepository.forgotPassword(payload);
+    commit('setLoading', false)
+    if (isForgotPassword.status === true) {
+      commit('clearError')
+      router.push("/");
+    } else {
+      commit('setError', isForgotPassword.error)
+    }
+  },
 }
 
 export default {
