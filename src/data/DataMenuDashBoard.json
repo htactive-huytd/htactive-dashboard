@@ -1,4 +1,44 @@
 {
+  "headersUserTable": [
+    {
+      "text": "User Name",
+      "align": "left",
+      "value": "username"
+    },
+    {
+      "text": "Full Name",
+      "value": "full_name"
+    },
+    {
+      "text": "Sex",
+      "value": "sex_type",
+      "sortable": false
+    },
+    {
+      "text": "Email",
+      "value": "email"
+    },
+    {
+      "text": "Phone Number",
+      "value": "phoneNumber"
+    },
+    {
+      "text": "Role",
+      "value": "role",
+      "sortable": false
+    },
+    {
+      "text": "Status",
+      "value": "blocked",
+      "sortable": false
+    },
+    {
+      "text": "Action",
+      "align": "center",
+      "value": "",
+      "sortable": false
+    }
+  ],
   "dataMenuDashBoard": [
     {
       "text": "Quản lý quyền",

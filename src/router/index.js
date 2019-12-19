@@ -12,6 +12,9 @@ import UpdatePassword from '../views/authentication/UpdatePassword.vue'
 
 //dashboard
 import DashBoard from '../views/dashboard/DashBoard.vue'
+//user
+import UserActive from '../views/dashboard/user/UserActive.vue'
+// import UserBlock from '../views/dashboard/user/UserUserBlock.vue'
 
 
 
@@ -57,18 +60,18 @@ const routes = [
     path: '/DashBoard',
     name: 'DashBoard',
     component: DashBoard,
-    // children: [
-    //   { path: 'useractive', component: UserActive },
-    //   {
-    //     path: 'userblock', component: UserBlock
-    //   }
-    //   // {
-    //   //   path: 'profile', components: {
-    //   //     default: Profile,
-    //   //     help: UserEdit
-    //   //   }
-    //   // }
-    // ]
+    children: [
+      { path: 'useractive', component: UserActive },
+      // {
+      //   path: 'userblock', component: UserBlock
+      // }
+      // {
+      //   path: 'profile', components: {
+      //     default: Profile,
+      //     help: UserEdit
+      //   }
+      // }
+    ]
   }
 
 ]
