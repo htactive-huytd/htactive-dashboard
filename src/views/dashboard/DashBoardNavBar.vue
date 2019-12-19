@@ -48,11 +48,10 @@
 </template>
 
 <script>
-import DataMenuDashBoard from "../../data/DataMenuDashBoard.json";
 export default {
+  props: ["items"],
   data: () => ({
-    drawer: null,
-    items: DataMenuDashBoard.dataMenuDashBoard
+    drawer: null
   })
 };
 </script>
