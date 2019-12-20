@@ -53,7 +53,7 @@
 <script>
 import UsersSearch from "./UsersSearch";
 import data from "../../../data/DataMenuDashBoard.json";
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   components: { UsersSearch },
@@ -69,7 +69,6 @@ export default {
       totalUsersActiveTable: "totalUsersActive",
       usersActiveTable: "usersActive"
     }),
-
     loading: {
       get() {
         return this.loadingTable;
@@ -109,7 +108,19 @@ export default {
       setOptionsTable: "setOptions",
       setTotalUsersActiveTable: "setTotalUsersActive",
       setUsersActiveTable: "setUsersActive"
-    })
-  }
+    }),
+    ...mapActions("users", { fetchUsersActive: "fetchUsersActive" })
+  },
+  mounted() {
+    this.fetchUsersActive();
+  },
+  watch: {
+    options: {
+      handler(){
+        this.fetchUsersActive();
+      },
+      deep: true
+    }
+  },
 };
 </script>

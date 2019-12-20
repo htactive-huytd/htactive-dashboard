@@ -1,7 +1,7 @@
-// import localStore from "../../common/localStore";
+import localStore from "../../common/localStore";
 // import router from '../../router/index'
-// import { RepositoryFactory } from "../../api/RepositoryFactory";
-// const UsersRepository = RepositoryFactory.get("users");
+import { RepositoryFactory } from "../../api/RepositoryFactory";
+const UsersRepository = RepositoryFactory.get("users");
 
 const state = {
   loading: false,
@@ -56,6 +56,37 @@ const actions = {
   // clearError({ commit }) {
   //   commit('clearError')
   // },
+  async fetchUsersActive({ commit, state }) {
+    commit('setLoading', true)
+    const { sortBy, sortDesc, page, itemsPerPage } = state.options;
+    // console.log('options-huy', state.options);
+    const body = {
+      blocked: false,
+      sort: {
+        [sortBy[0]]: sortDesc[0] ? -1 : 0
+      },
+      filter: {
+        startDate: "",
+        endDate: "",
+        full_name: "",
+        phoneNumber: "",
+        email: "",
+        username: ""
+      },
+      pagination: {
+        pageSize: itemsPerPage === -1 ? state.totalUsersActive : itemsPerPage,
+        // pageSize: itemsPerPage,
+        page: page
+      }
+    };
+    // console.log('body-tras', body);
+    const data = await UsersRepository.getAllUsers(body, localStore.headerBearerToken())
+    commit('setLoading', false)
+    // console.log('api return', data);
+    commit('setUsersActive', data.results)
+    commit('setTotalUsersActive', data.count)
+    // console.log('totalUsersActive', state.totalUsersActive);
+  }
 }
 
 export default {
