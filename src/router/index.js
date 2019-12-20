@@ -13,7 +13,7 @@ import UpdatePassword from '../views/authentication/UpdatePassword.vue'
 //dashboard
 import DashBoard from '../views/dashboard/DashBoard.vue'
 //user
-import UserActive from '../views/dashboard/user/UserActive.vue'
+import UsersActive from '../views/dashboard/users/UsersActive.vue'
 // import UserBlock from '../views/dashboard/user/UserUserBlock.vue'
 
 
@@ -61,7 +61,7 @@ const routes = [
     name: 'DashBoard',
     component: DashBoard,
     children: [
-      { path: 'useractive', component: UserActive },
+      { path: 'usersactive', component: UsersActive },
       // {
       //   path: 'userblock', component: UserBlock
       // }

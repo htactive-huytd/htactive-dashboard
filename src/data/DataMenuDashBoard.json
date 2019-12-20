@@ -64,11 +64,11 @@
       "childs": [
         {
           "text": "Tài khoản đang hoạt động",
-          "link": "/dashboard/useractive"
+          "link": "/dashboard/usersactive"
         },
         {
           "text": "Tài khoản đang bị khóa",
-          "link": "/dashboard/userblock"
+          "link": "/dashboard/usersblock"
         }
       ]
     },

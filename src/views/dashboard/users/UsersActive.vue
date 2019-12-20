@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UserSearch></UserSearch>
+    <UsersSearch></UsersSearch>
     <div>
       <v-col>
         <v-btn class="primary" to="#">
@@ -51,10 +51,10 @@
 </template>
   
 <script>
-import UserSearch from "./UserSearch";
+import UsersSearch from "./UsersSearch";
 import data from "../../../data/DataMenuDashBoard.json";
 export default {
-  components: { UserSearch },
+  components: { UsersSearch },
   data() {
     return {
       totalUsersActive: 0,
