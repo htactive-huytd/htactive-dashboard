@@ -9,6 +9,14 @@ const state = {
   totalUsersActive: 0,
   usersActive: [],
   options: {},
+  filter: {
+    dateStart: new Date().toISOString().substr(0, 10),
+    dateEnd: new Date().toISOString().substr(0, 10),
+    full_name: "",
+    phoneNumber: "",
+    email: "",
+    username: ""
+  }
 };
 
 const getters = {
@@ -27,6 +35,9 @@ const getters = {
   options(state) {
     // console.log('mutation-options', state.options);
     return state.options
+  },
+  filter(state) {
+    return state.filter
   }
 };
 
@@ -49,7 +60,9 @@ const mutations = {
   setOptions(state, payload) {
     state.options = payload
   },
-
+  setFilter(state, payload) {
+    state.filter = payload
+  }
 };
 
 const actions = {

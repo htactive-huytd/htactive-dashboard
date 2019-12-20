@@ -3,18 +3,18 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="4" class="py-0">
-          <v-text-field label="User Name" placeholder="Enter user name"></v-text-field>
+          <v-text-field label="User Name" placeholder="Enter user name" v-model="filter.username"></v-text-field>
         </v-col>
         <v-col cols="12" md="4" class="py-0">
-          <v-text-field label="Full Name" placeholder="Enter Full Name"></v-text-field>
+          <v-text-field label="Full Name" placeholder="Enter Full Name" v-model="filter.full_name"></v-text-field>
         </v-col>
         <v-col cols="12" md="4" class="py-0">
-          <v-text-field label="Email" placeholder="Enter Email"></v-text-field>
+          <v-text-field label="Email" placeholder="Enter Email" v-model="filter.email"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12" md="4" class="py-0">
-          <v-text-field label="Phone Number" placeholder="Enter Phone Number"></v-text-field>
+          <v-text-field label="Phone Number" placeholder="Enter Phone Number" v-model="filter.phoneNumber"></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4" class="py-0">
@@ -81,36 +81,49 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   data: () => ({
     isDisplayMenuDateStart: false,
-    isDisplayMenuDateEnd: false,
-    filter: {
-      dateStart: new Date().toISOString().substr(0, 10),
-      dateEnd: new Date().toISOString().substr(0, 10),
-      full_name: "",
-      phoneNumber: "",
-      email: "",
-      username: ""
-    }
+    isDisplayMenuDateEnd: false
+    // filter: {
+    //   dateStart: new Date().toISOString().substr(0, 10),
+    //   dateEnd: new Date().toISOString().substr(0, 10),
+    //   full_name: "",
+    //   phoneNumber: "",
+    //   email: "",
+    //   username: ""
+    // }
   }),
-  methods: {},
-  // watch: {
-  //   dateStart: {
-  //     handler() {
-  //       console.log(this.dateStart);
-  //     },
-  //     deep: true
-  //   }
-  // },
+  methods: {
+    ...mapMutations("users", { setFilterUser: "setFilter" })
+  },
   computed: {
+    ...mapGetters("users", { filterUsers: "filter" }),
     maxStartDate() {
       return new Date().toISOString().substr(0, 10);
     },
     minEndDate() {
       return this.filter.dateStart;
+    },
+    filter: {
+      get() {
+        return this.filterUsers;
+      },
+      set(value) {
+        this.setFilterUser(value);
+      }
     }
-  }
+  },
+  // watch: {
+  //   filter: {
+  //     handler(){
+  //       console.log('filter-huy',this.filter);
+  //     },
+  //     deep: true
+  //   }
+  // },
 };
 </script>
 
