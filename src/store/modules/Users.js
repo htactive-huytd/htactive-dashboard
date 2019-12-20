@@ -5,7 +5,7 @@
 
 const state = {
   loading: false,
-  error: null,
+  // error: null,
   totalUsersActive: 0,
   usersActive: [],
   options: {},
@@ -15,9 +15,9 @@ const getters = {
   loading(state) {
     return state.loading
   },
-  error(state) {
-    return state.error
-  },
+  // error(state) {
+  //   return state.error
+  // },
   totalUsersActive(state) {
     return state.totalUsersActive
   },
@@ -25,6 +25,7 @@ const getters = {
     return state.usersActive
   },
   options(state) {
+    // console.log('mutation-options', state.options);
     return state.options
   }
 };
@@ -33,12 +34,12 @@ const mutations = {
   setLoading(state, payload) {
     state.loading = payload
   },
-  setError(state, payload) {
-    state.error = payload
-  },
-  clearError(state) {
-    state.error = null
-  },
+  // setError(state, payload) {
+  //   state.error = payload
+  // },
+  // clearError(state) {
+  //   state.error = null
+  // },
   setTotalUsersActive(state, payload) {
     state.totalUsersActive = payload
   },
@@ -52,9 +53,9 @@ const mutations = {
 };
 
 const actions = {
-  clearError({ commit }) {
-    commit('clearError')
-  },
+  // clearError({ commit }) {
+  //   commit('clearError')
+  // },
 }
 
 export default {

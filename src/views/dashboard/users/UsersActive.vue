@@ -16,12 +16,12 @@
           :loading="loading"
           class="elevation-1"
           :footer-props="{
-      showFirstLastPage: true,
-      firstIcon: 'mdi-arrow-collapse-left',
-      lastIcon: 'mdi-arrow-collapse-right',
-      prevIcon: 'mdi-minus',
-      nextIcon: 'mdi-plus'
-    }"
+            showFirstLastPage: true,
+            firstIcon: 'mdi-arrow-collapse-left',
+            lastIcon: 'mdi-arrow-collapse-right',
+            prevIcon: 'mdi-minus',
+            nextIcon: 'mdi-plus'
+          }"
         >
           <template v-slot:body="{ items }">
             <tbody>
@@ -53,16 +53,63 @@
 <script>
 import UsersSearch from "./UsersSearch";
 import data from "../../../data/DataMenuDashBoard.json";
+import { mapGetters, mapMutations } from "vuex";
+
 export default {
   components: { UsersSearch },
   data() {
     return {
-      totalUsersActive: 0,
-      usersActive: [],
-      loading: false,
-      options: {},
       headers: data.headersUserTable
     };
+  },
+  computed: {
+    ...mapGetters("users", {
+      loadingTable: "loading",
+      optionsTable: "options",
+      totalUsersActiveTable: "totalUsersActive",
+      usersActiveTable: "usersActive"
+    }),
+
+    loading: {
+      get() {
+        return this.loadingTable;
+      },
+      set(value) {
+        this.setLoadingTable(value);
+      }
+    },
+    options: {
+      get() {
+        return this.optionsTable;
+      },
+      set(value) {
+        this.setOptionsTable(value);
+      }
+    },
+    totalUsersActive: {
+      get() {
+        return this.totalUsersActiveTable;
+      },
+      set(value) {
+        this.setTotalUsersActiveTable(value);
+      }
+    },
+    usersActive: {
+      get() {
+        return this.usersActiveTable;
+      },
+      set(value) {
+        this.setUsersActiveTable(value);
+      }
+    }
+  },
+  methods: {
+    ...mapMutations("users", {
+      setLoadingTable: "setLoading",
+      setOptionsTable: "setOptions",
+      setTotalUsersActiveTable: "setTotalUsersActive",
+      setUsersActiveTable: "setUsersActive"
+    })
   }
 };
 </script>
