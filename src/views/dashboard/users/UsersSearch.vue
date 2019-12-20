@@ -22,24 +22,24 @@
             ref="menuDateStart"
             v-model="isDisplayMenuDateStart"
             :close-on-content-click="false"
-            :return-value.sync="dateStart"
+            :return-value.sync="filter.dateStart"
             transition="scale-transition"
             offset-y
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="dateStart"
+                v-model="filter.dateStart"
                 label="From"
                 prepend-icon="mdi-calendar-range"
                 readonly
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="dateStart" no-title scrollable>
+            <v-date-picker v-model="filter.dateStart" no-title scrollable :max="maxStartDate">
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="isDisplayMenuDateStart = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menuDateStart.save(dateStart)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menuDateStart.save(filter.dateStart)">OK</v-btn>
             </v-date-picker>
           </v-menu>
         </v-col>
@@ -48,24 +48,24 @@
             ref="menuDateEnd"
             v-model="isDisplayMenuDateEnd"
             :close-on-content-click="false"
-            :return-value.sync="dateEnd"
+            :return-value.sync="filter.dateEnd"
             transition="scale-transition"
             offset-y
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="dateEnd"
+                v-model="filter.dateEnd"
                 label="To"
                 prepend-icon="mdi-calendar-range"
                 readonly
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="dateEnd" no-title scrollable>
+            <v-date-picker v-model="filter.dateEnd" no-title scrollable :min="minEndDate">
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="isDisplayMenuDateEnd = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menuDateEnd.save(dateEnd)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menuDateEnd.save(filter.dateEnd)">OK</v-btn>
             </v-date-picker>
           </v-menu>
         </v-col>
@@ -83,12 +83,34 @@
 <script>
 export default {
   data: () => ({
-    dateStart: new Date().toISOString().substr(0, 10),
     isDisplayMenuDateStart: false,
-    dateEnd: new Date().toISOString().substr(0, 10),
-    isDisplayMenuDateEnd: false
+    isDisplayMenuDateEnd: false,
+    filter: {
+      dateStart: new Date().toISOString().substr(0, 10),
+      dateEnd: new Date().toISOString().substr(0, 10),
+      full_name: "",
+      phoneNumber: "",
+      email: "",
+      username: ""
+    }
   }),
-  methods: {}
+  methods: {},
+  // watch: {
+  //   dateStart: {
+  //     handler() {
+  //       console.log(this.dateStart);
+  //     },
+  //     deep: true
+  //   }
+  // },
+  computed: {
+    maxStartDate() {
+      return new Date().toISOString().substr(0, 10);
+    },
+    minEndDate() {
+      return this.filter.dateStart;
+    }
+  }
 };
 </script>
 
