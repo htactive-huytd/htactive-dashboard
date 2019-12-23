@@ -14,7 +14,11 @@
       </v-row>
       <v-row>
         <v-col cols="12" md="4" class="py-0">
-          <v-text-field label="Phone Number" placeholder="Enter Phone Number" v-model="filter.phoneNumber"></v-text-field>
+          <v-text-field
+            label="Phone Number"
+            placeholder="Enter Phone Number"
+            v-model="filter.phoneNumber"
+          ></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4" class="py-0">
@@ -72,8 +76,8 @@
       </v-row>
       <v-row justify="center">
         <div>
-          <v-btn depressed class="mx-3" color="primary">Search</v-btn>
-          <v-btn depressed class="mx-3" color="blue-grey lighten-1">Cancel</v-btn>
+          <v-btn depressed class="mx-3" color="primary" @click="search()">Search</v-btn>
+          <v-btn depressed class="mx-3" color="blue-grey lighten-1" @click="cancel()">Cancel</v-btn>
         </div>
       </v-row>
     </v-container>
@@ -81,41 +85,73 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   data: () => ({
     isDisplayMenuDateStart: false,
-    isDisplayMenuDateEnd: false
-    // filter: {
-    //   dateStart: new Date().toISOString().substr(0, 10),
-    //   dateEnd: new Date().toISOString().substr(0, 10),
-    //   full_name: "",
-    //   phoneNumber: "",
-    //   email: "",
-    //   username: ""
-    // }
+    isDisplayMenuDateEnd: false,
+    filter: {
+      // dateStart: new Date().toISOString().substr(0, 10),
+      dateStart: "",
+      // dateEnd: new Date().toISOString().substr(0, 10),
+      dateEnd: "",
+      full_name: "",
+      phoneNumber: "",
+      email: "",
+      username: ""
+    }
   }),
+  mounted() {
+    this.setFilterUser({
+      // dateStart: new Date().toISOString().substr(0, 10),
+      dateStart: "",
+      // dateEnd: new Date().toISOString().substr(0, 10),
+      dateEnd: "",
+      full_name: "",
+      phoneNumber: "",
+      email: "",
+      username: ""
+    });
+  },
   methods: {
-    ...mapMutations("users", { setFilterUser: "setFilter" })
+    ...mapMutations("users", { setFilterUser: "setFilter" }),
+    search() {
+      this.setFilterUser(this.filter);
+      this.$emit("search");
+    },
+    cancel() {
+      this.filter = {
+        // dateStart: new Date().toISOString().substr(0, 10),
+        dateStart: "",
+        // dateEnd: new Date().toISOString().substr(0, 10),
+        dateEnd: "",
+        full_name: "",
+        phoneNumber: "",
+        email: "",
+        username: ""
+      };
+      this.setFilterUser(this.filter);
+      this.$emit("cancel");
+    }
   },
   computed: {
-    ...mapGetters("users", { filterUsers: "filter" }),
+    // ...mapGetters("users", { filterUsers: "filter" }),
     maxStartDate() {
       return new Date().toISOString().substr(0, 10);
     },
     minEndDate() {
       return this.filter.dateStart;
-    },
-    filter: {
-      get() {
-        return this.filterUsers;
-      },
-      set(value) {
-        this.setFilterUser(value);
-      }
     }
-  },
+    // filter: {
+    //   get() {
+    //     return this.filterUsers;
+    //   },
+    //   set(value) {
+    //     this.setFilterUser(value);
+    //   }
+    // }
+  }
   // watch: {
   //   filter: {
   //     handler(){

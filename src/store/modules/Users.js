@@ -10,8 +10,12 @@ const state = {
   usersActive: [],
   options: {},
   filter: {
-    dateStart: new Date().toISOString().substr(0, 10),
-    dateEnd: new Date().toISOString().substr(0, 10),
+    // dateStart: new Date().toISOString().substr(0, 10),
+    dateStart: "",
+
+    // dateEnd: new Date().toISOString().substr(0, 10),
+    dateEnd: "",
+
     full_name: "",
     phoneNumber: "",
     email: "",
@@ -61,7 +65,18 @@ const mutations = {
     state.options = payload
   },
   setFilter(state, payload) {
+    console.log("payload-send", payload);
     state.filter = payload
+  },
+  clearFilter(state) {
+    state.filter = {
+      dateStart: "",
+      dateEnd: "",
+      full_name: "",
+      phoneNumber: "",
+      email: "",
+      username: ""
+    }
   }
 };
 
@@ -78,21 +93,22 @@ const actions = {
       sort: {
         [sortBy[0]]: sortDesc[0] ? -1 : 0
       },
-      filter: {
-        startDate: "",
-        endDate: "",
-        full_name: "",
-        phoneNumber: "",
-        email: "",
-        username: ""
-      },
+      // filter: {
+      //   startDate: "",
+      //   endDate: "",
+      //   full_name: "",
+      //   phoneNumber: "",
+      //   email: "",
+      //   username: ""
+      // },
+      filter: state.filter,
       pagination: {
         pageSize: itemsPerPage === -1 ? state.totalUsersActive : itemsPerPage,
         // pageSize: itemsPerPage,
         page: page
       }
     };
-    // console.log('body-tras', body);
+    console.log('body-tras', body);
     const data = await UsersRepository.getAllUsers(body, localStore.headerBearerToken())
     commit('setLoading', false)
     // console.log('api return', data);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <UsersSearch></UsersSearch>
+    <UsersSearch @search="search" @cancel="cancel"></UsersSearch>
     <div>
       <v-col>
         <v-btn class="primary" to="#">
@@ -109,18 +109,24 @@ export default {
       setTotalUsersActiveTable: "setTotalUsersActive",
       setUsersActiveTable: "setUsersActive"
     }),
-    ...mapActions("users", { fetchUsersActive: "fetchUsersActive" })
+    ...mapActions("users", { fetchUsersActive: "fetchUsersActive" }),
+    search() {
+      this.fetchUsersActive();
+    },
+    cancel() {
+      this.fetchUsersActive();
+    }
   },
   mounted() {
     this.fetchUsersActive();
   },
   watch: {
     options: {
-      handler(){
+      handler() {
         this.fetchUsersActive();
       },
       deep: true
     }
-  },
+  }
 };
 </script>
