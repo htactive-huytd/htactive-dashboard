@@ -10,12 +10,8 @@ const state = {
   usersActive: [],
   options: {},
   filter: {
-    // dateStart: new Date().toISOString().substr(0, 10),
-    dateStart: "",
-
-    // dateEnd: new Date().toISOString().substr(0, 10),
-    dateEnd: "",
-
+    startDate: "",
+    endDate: "",
     full_name: "",
     phoneNumber: "",
     email: "",
@@ -37,7 +33,6 @@ const getters = {
     return state.usersActive
   },
   options(state) {
-    // console.log('mutation-options', state.options);
     return state.options
   },
   filter(state) {
@@ -70,8 +65,8 @@ const mutations = {
   },
   clearFilter(state) {
     state.filter = {
-      dateStart: "",
-      dateEnd: "",
+      startDate: "",
+      endDate: "",
       full_name: "",
       phoneNumber: "",
       email: "",
@@ -87,34 +82,28 @@ const actions = {
   async fetchUsersActive({ commit, state }) {
     commit('setLoading', true)
     const { sortBy, sortDesc, page, itemsPerPage } = state.options;
-    // console.log('options-huy', state.options);
     const body = {
       blocked: false,
       sort: {
         [sortBy[0]]: sortDesc[0] ? -1 : 0
       },
-      // filter: {
-      //   startDate: "",
-      //   endDate: "",
-      //   full_name: "",
-      //   phoneNumber: "",
-      //   email: "",
-      //   username: ""
-      // },
-      filter: state.filter,
+      filter: {
+        startDate: (state.filter.startDate) ? new Date(state.filter.startDate).toISOString() : '',
+        endDate: (state.filter.endDate) ? new Date(state.filter.endDate).toISOString() : '',
+        full_name: state.filter.full_name,
+        phoneNumber: state.filter.phoneNumber,
+        email: state.filter.email,
+        username: state.filter.username
+      },
       pagination: {
         pageSize: itemsPerPage === -1 ? state.totalUsersActive : itemsPerPage,
-        // pageSize: itemsPerPage,
         page: page
       }
     };
-    console.log('body-tras', body);
     const data = await UsersRepository.getAllUsers(body, localStore.headerBearerToken())
     commit('setLoading', false)
-    // console.log('api return', data);
     commit('setUsersActive', data.results)
     commit('setTotalUsersActive', data.count)
-    // console.log('totalUsersActive', state.totalUsersActive);
   }
 }
 

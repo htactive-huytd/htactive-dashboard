@@ -26,24 +26,24 @@
             ref="menuDateStart"
             v-model="isDisplayMenuDateStart"
             :close-on-content-click="false"
-            :return-value.sync="filter.dateStart"
+            :return-value.sync="filter.startDate"
             transition="scale-transition"
             offset-y
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="filter.dateStart"
+                v-model="filter.startDate"
                 label="From"
                 prepend-icon="mdi-calendar-range"
                 readonly
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="filter.dateStart" no-title scrollable :max="maxStartDate">
+            <v-date-picker v-model="filter.startDate" no-title scrollable :max="maxStartDate">
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="isDisplayMenuDateStart = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menuDateStart.save(filter.dateStart)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menuDateStart.save(filter.startDate)">OK</v-btn>
             </v-date-picker>
           </v-menu>
         </v-col>
@@ -52,24 +52,24 @@
             ref="menuDateEnd"
             v-model="isDisplayMenuDateEnd"
             :close-on-content-click="false"
-            :return-value.sync="filter.dateEnd"
+            :return-value.sync="filter.endDate"
             transition="scale-transition"
             offset-y
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
               <v-text-field
-                v-model="filter.dateEnd"
+                v-model="filter.endDate"
                 label="To"
                 prepend-icon="mdi-calendar-range"
                 readonly
                 v-on="on"
               ></v-text-field>
             </template>
-            <v-date-picker v-model="filter.dateEnd" no-title scrollable :min="minEndDate">
+            <v-date-picker v-model="filter.endDate" no-title scrollable :min="minEndDate">
               <v-spacer></v-spacer>
               <v-btn text color="primary" @click="isDisplayMenuDateEnd = false">Cancel</v-btn>
-              <v-btn text color="primary" @click="$refs.menuDateEnd.save(filter.dateEnd)">OK</v-btn>
+              <v-btn text color="primary" @click="$refs.menuDateEnd.save(filter.endDate)">OK</v-btn>
             </v-date-picker>
           </v-menu>
         </v-col>
@@ -92,10 +92,8 @@ export default {
     isDisplayMenuDateStart: false,
     isDisplayMenuDateEnd: false,
     filter: {
-      // dateStart: new Date().toISOString().substr(0, 10),
-      dateStart: "",
-      // dateEnd: new Date().toISOString().substr(0, 10),
-      dateEnd: "",
+      startDate: "",
+      endDate: "",
       full_name: "",
       phoneNumber: "",
       email: "",
@@ -104,10 +102,8 @@ export default {
   }),
   mounted() {
     this.setFilterUser({
-      // dateStart: new Date().toISOString().substr(0, 10),
-      dateStart: "",
-      // dateEnd: new Date().toISOString().substr(0, 10),
-      dateEnd: "",
+      startDate: "",
+      endDate: "",
       full_name: "",
       phoneNumber: "",
       email: "",
@@ -122,10 +118,8 @@ export default {
     },
     cancel() {
       this.filter = {
-        // dateStart: new Date().toISOString().substr(0, 10),
-        dateStart: "",
-        // dateEnd: new Date().toISOString().substr(0, 10),
-        dateEnd: "",
+        startDate: "",
+        endDate: "",
         full_name: "",
         phoneNumber: "",
         email: "",
@@ -136,30 +130,13 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters("users", { filterUsers: "filter" }),
     maxStartDate() {
       return new Date().toISOString().substr(0, 10);
     },
     minEndDate() {
-      return this.filter.dateStart;
+      return this.filter.startDate;
     }
-    // filter: {
-    //   get() {
-    //     return this.filterUsers;
-    //   },
-    //   set(value) {
-    //     this.setFilterUser(value);
-    //   }
-    // }
   }
-  // watch: {
-  //   filter: {
-  //     handler(){
-  //       console.log('filter-huy',this.filter);
-  //     },
-  //     deep: true
-  //   }
-  // },
 };
 </script>
 
